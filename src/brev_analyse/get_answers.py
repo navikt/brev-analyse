@@ -7,7 +7,7 @@ def get_survey_questions(dataframe: pd.DataFrame) -> dict:
     """
     Get survey questions from a Task analytics survey as a dictionary
 
-    Questions are stored both in the first and second row, 
+    Questions are stored both in the first and second row,
     so questions have a key representing the question ID and a value representing the text of the question.
 
     Parameters:
