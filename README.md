@@ -2,6 +2,6 @@
 
 Analyser om brev fra Nav
 
-Dagpenger
-Uføretrygd
-Alderspensjon
+* Dagpenger
+* Uføretrygd
+* Alderspensjon
