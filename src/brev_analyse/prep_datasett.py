@@ -36,9 +36,6 @@ Resten av datasettet bør kontrolleres for å se om dette påvirker analysen
 # behold første rad, dropp nummer 2
 df = df.iloc[1:]
 # %%
-# fjern rader uten svar
-df = df[df["answers.c"] != "Unknown"]
-# %%
 """
 Erklære hvilke variabler er kategoriske
 """
