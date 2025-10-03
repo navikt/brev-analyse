@@ -33,17 +33,17 @@ Resten av datasettet bør kontrolleres for å se om dette påvirker analysen
 """
 
 # %%
+# behold første rad, dropp nummer 2
+df = df.iloc[1:]
+# %%
+# fjern rader uten svar
+df = df[df["answers.c"] != "Unknown"]
+# %%
 """
 Erklære hvilke variabler er kategoriske
 """
 cat_col_pattern = [col for col in df.columns if col.startswith("answers.")]
 df[cat_col_pattern] = df[cat_col_pattern].astype("category")
-# %%
-# fjern rader uten svar
-df = df[df["answers.c"] != "Unknown"]
-# %%
-# behold første rad, dropp nummer 2
-df = df.iloc[1:]
 # %%
 # ny mapping for spørsmål ID til tekst
 questions_short = {
