@@ -5,10 +5,8 @@ Brev om dagpenger
 
 import pandas as pd
 from statsmodels.formula.api import logit
-import statsmodels.api as smf
 from scipy.stats import chi2
 from statsmodels.miscmodels.ordinal_model import OrderedModel
-from patsy import dmatrices
 
 
 # %%
