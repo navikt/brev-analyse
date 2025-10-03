@@ -130,7 +130,8 @@ df["dep_forstå"] = df["dep_forstå"].cat.set_categories(
 df = df.dropna(subset=["dep_forstå"])  # fjern tomme rader
 # %%
 # Ref https://github.com/statsmodels/statsmodels/issues/7418
-# OrderedModel.from_formula('measure ~ C(factor1) + C(factor2) + C(factor1):C(factor2)', distr='logit', data=df)
+# I en regresjon med flere ordinale variabler kombinerer vi disse med egen syntaks
+# OrderedModel.from_formula('dependent ~ C(factor1) + C(factor2) + C(factor1):C(factor2)', distr='logit', data=df)
 model = OrderedModel.from_formula(
     "dep_forstå ~ C(Alder) + C(Spraak) + C(Alder):C(Spraak)", distr="logit", data=df
 )
