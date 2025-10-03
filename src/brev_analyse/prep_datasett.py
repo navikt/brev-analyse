@@ -73,31 +73,6 @@ df.rename(columns=questions_short, inplace=True)
 
 # %%
 """
-Lag construct variabler til analysen som går på tvers av brevtype
-"""
-# Kombinere variablene om å forstå vedtak
-# kombinerer spørsmål om begrunnelse for alle brevtyper
-df["dep_forstå"] = (
-    df[["Innvilgelse_hvorfor", "Avslag_hvorfor", "Mangel_hvorfor", "Stans_hvorfor"]]
-    .bfill(axis=1)
-    .iloc[:, 0]
-).astype("category")
-
-# %%
-# sett nivåer på ordinal variabel
-df["dep_forstå"] = df["dep_forstå"].cat.set_categories(
-    [
-        "Veldig vanskelig å forstå",
-        "Vanskelig å forstå",
-        "Verken lett eller vanskelig",
-        "Lett å forstå",
-        "Veldig lett å forstå",
-    ],
-    ordered=True,
-)
-df = df.dropna(subset=["dep_forstå"])  # fjern tomme rader
-# %%
-"""
 Slik kan vi gjenskape det opprinnelige uttrekket fra spss med rådata fra task analytics
 """
 # gjenskap uttrekk fra spss ved å bruke samme respondenter
@@ -122,3 +97,45 @@ Henvis til de heretter som
 * df
 * subset
 """
+# %%
+"""
+Lag construct variabler til analysen som går på tvers av brevtype
+"""
+# Kombinere variablene om å forstå vedtak
+# kombinerer spørsmål om begrunnelse for alle brevtyper
+df["dep_forstå"] = (
+    df[["Innvilgelse_hvorfor", "Avslag_hvorfor", "Mangel_hvorfor", "Stans_hvorfor"]]
+    .bfill(axis=1)
+    .iloc[:, 0]
+).astype("category")
+
+# %%
+# sett nivåer på ordinal variabel
+df["dep_forstå"] = df["dep_forstå"].cat.set_categories(
+    [
+        "Veldig vanskelig å forstå",
+        "Vanskelig å forstå",
+        "Verken lett eller vanskelig",
+        "Lett å forstå",
+        "Veldig lett å forstå",
+    ],
+    ordered=True,
+)
+df = df.dropna(subset=["dep_forstå"])  # fjern tomme rader
+# %%
+# Logistisk regresjon
+# Årsaker til at innbyggere tar kontakt om brev
+subset["dep"] = subset["Kontaktet_Nav"]
+subset["dep"] = subset["dep"].map(
+    {"Jeg tok ikke kontakt med NAV om brevet": 0, "Jeg kontaktet NAV om brevet": 1}
+)
+subset = subset.dropna(subset=["dep"])
+subset["dep"] = subset["dep"].astype(int)
+# %%
+# Logistisk regresjon
+# Kontaktet de Nav og morsmål
+model = logit("dep ~ C(Morsmål)", data=subset)
+res = model.fit()
+print("Modell nummer 1")
+print(f"Formel: {res.model.formula} \n \n")
+print(res.summary())
