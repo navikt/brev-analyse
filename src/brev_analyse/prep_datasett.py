@@ -36,7 +36,7 @@ Resten av datasettet bør kontrolleres for å se om dette påvirker analysen
 """
 Erklære hvilke variabler er kategoriske
 """
-cat_col_pattern = [col for col in df.columns if col.startswith("answers.t")]
+cat_col_pattern = [col for col in df.columns if col.startswith("answers.")]
 df[cat_col_pattern] = df[cat_col_pattern].astype("category")
 # %%
 # fjern rader uten svar
