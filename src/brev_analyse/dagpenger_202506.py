@@ -82,6 +82,9 @@ print(f"Formel: {res.model.formula} \n \n")
 print(res.summary())
 
 # %%
+# Endrer avhengig variabel så kopierer df på nytt
+reg_df = df.copy()
+# %%
 # Regresjoner om
 # De som synes det er lett eller veldig lett å forstå vedtak
 reg_df["dep"] = reg_df["Innvilgelse_hvorfor"].copy()
