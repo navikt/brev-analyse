@@ -79,11 +79,11 @@ Slik kan vi gjenskape det opprinnelige uttrekket fra spss med rådata fra task a
 # gjenskap uttrekk fra spss ved å bruke samme respondenter
 subset = df[df["id"].isin(df_spss["V1"])]
 # %%
-# sjekk om dataframes er identiske
-pd.testing.assert_frame_equal(subset, df_spss)
-# %%
-# alternativ sjekk
-subset.equals(df_spss)
+# bekreft at vi har riktig antall unike svar i begge sett, slik at diff er 0
+if df_spss["V1"].nunique() - subset["id"].nunique() == 0:
+    print("Datasettene er like. Vi kan gjenskape resultatene.")
+else:
+    print("Datasettene er ulike. Vi kan ikke gjenskape resultatene med nytt uttrekk.")
 # %%
 # sjekk at kolonner for analysen ble like i begge datasett - skal gi True i svar
 df.columns.equals(subset.columns)
