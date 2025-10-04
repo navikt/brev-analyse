@@ -1,6 +1,5 @@
 # %%
 import pandas as pd
-from statsmodels.formula.api import logit
 
 from get_answers import get_survey_questions
 
