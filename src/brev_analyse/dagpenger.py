@@ -116,7 +116,7 @@ print(res.summary())
 # %%
 # Regresjoner om
 # De som synes det er lett eller veldig lett å forstå vedtak
-reg_df["dep"] = reg_df["Innvilgelse_1"].copy()
+reg_df["dep"] = reg_df["Innvilgelse_hvorfor"].copy()
 reg_df["dep"] = reg_df["dep"].map(
     {
         "Lett å forstå": 1,
@@ -146,7 +146,7 @@ reg_df = pd.read_spss(datasett_sav_sti)
 # Kombinere variablene om å forstå vedtak
 # kombinerer spørsmål om begrunnelse for alle brevtyper
 reg_df["dep_forstå"] = (
-    reg_df[["Innvilgelse_1", "Avslag_1", "Mangelbrev_1", "Stans_1"]]
+    reg_df[["Innvilgelse_hvorfor", "Avslag_hvorfor", "Mangel_hvorfor", "Stans_hvorfor"]]
     .bfill(axis=1)
     .iloc[:, 0]
 )
