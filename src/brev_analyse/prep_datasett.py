@@ -110,3 +110,4 @@ De lagres i mappen data/
 df.to_pickle("../../data/dagpenger_202510.pkl")
 # %%
 subset.to_pickle("../../data/dagpenger_202506.pkl")
+# %%
