@@ -11,9 +11,6 @@ df_spss = pd.read_spss(datasett_sav_sti)
 datasett_ta_sti = "../../data/uttrekk brev dagpenger 20250916.xlsx"
 df = pd.read_excel(datasett_ta_sti)
 # %%
-q = get_survey_questions(dataframe=df_spss)
-questions = get_survey_questions(dataframe=df)
-# %%
 """
 Forbered datasett til analyser om dagpenger
 
@@ -22,17 +19,24 @@ Lag to datasett. Ett for hele tidsperioden, og ett for perioden før sommerferie
 Datasettene skal ha samme datatyper og variabler til slutt slik at analysen kan gjentas for hver tidsperiode
 
 Steg
-* fjern rader uten svar - KLAR
-* fjern rader fra de som ikke leste brevet - TODO
-* erklære de kategoriske variablene - KLAR
-* bruk kortere variabelnavn i stedet for stavelsen av alle spørsmål - KLAR
-* lag subset-datasett basert på identiske respondenter fra rådata - KLAR
+* lagrer fullstendige spørsmålsformuleringer som dictionary
+* fjern første rad med fullstendige spørsmålsformuleringer
+* erklære de kategoriske variablene i datasettene
+* bruk kortere variabelnavn i stedet for stavelsen av alle spørsmål
+* lag subset-datasett basert på identiske respondenter fra rådata
+* gjenskap uttrekk fra spss med rådata fra task analytics
+    > bruker respondent ID
+    > verifiserer at unike respondent IDer er like i begge datasett
+    > verifiserer at samme variabler er i datasettene for begge tidsperioder
+    > verifiserer at samme datatypene er i datasettene for begge tidsperioder
 
 NOTE
 Det er noen ulikheter i det opprinnelige datasettet fra spss angående morsmål
 Resten av datasettet bør kontrolleres for å se om dette påvirker analysen
 """
-
+# %%
+q = get_survey_questions(dataframe=df_spss)
+questions = get_survey_questions(dataframe=df)
 # %%
 # behold første rad, dropp nummer 2
 df = df.iloc[1:]
