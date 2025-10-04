@@ -13,8 +13,6 @@ from statsmodels.formula.api import logit
 from scipy.stats import chi2
 from statsmodels.miscmodels.ordinal_model import OrderedModel
 
-from get_answers import get_survey_questions
-
 # %%
 """
 Del 1: Forbered datasett til analyser om dagpenger
