@@ -107,9 +107,9 @@ Nå er datasettene for begge tidsperiodene klare til analyse.
 De lagres i mappen data/
 """
 # %%
-df.to_excel("../../data/dagpenger_202510.xlsx", index=False)
+df.to_pickle("../../data/dagpenger_202510.pkl")
 # %%
-subset.to_excel("../../data/dagpenger_202506.xlsx", index=False)
+subset.to_pickle("../../data/dagpenger_202506.pkl")
 # %%
 """
 Lag construct variabler til analysen som går på tvers av brevtype
