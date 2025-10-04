@@ -120,7 +120,7 @@ Del 3: Analyse før sommer 2025
 """
 # Logistisk regresjon
 # Årsaker til at innbyggere tar kontakt om brev
-subset["dep"] = subset["Nav_kontakt"]
+subset["dep"] = subset["Kontaktet_Nav"]
 subset["dep"] = subset["dep"].map(
     {"Jeg tok ikke kontakt med NAV om brevet": 0, "Jeg kontaktet NAV om brevet": 1}
 )
@@ -201,7 +201,7 @@ subset = subset.dropna(subset=["dep"])
 subset["dep"] = subset["dep"].astype(int)
 # %%
 # Log regresjon - forstår begrunnelse og morsmål alder og kontaktet Nav
-model = logit("dep ~ C(Morsmål) + C(Alder) + C(Nav_kontakt)", data=subset)
+model = logit("dep ~ C(Morsmål) + C(Alder) + C(Kontaktet_Nav)", data=subset)
 res = model.fit()
 print("Modell nummer 5")
 print(f"Formelen: {res.model.formula} \n \n")
