@@ -109,6 +109,7 @@ print(res.summary())
 df = pd.read_spss(datasett_sav_sti)
 # %%
 # Kombinere variablene om å forstå vedtak
+# kombinerer spørsmål om begrunnelse for alle brevtyper
 df["dep_forstå"] = (
     df[["Innvilgelse_1", "Avslag_1", "Mangelbrev_1", "Stans_1"]]
     .bfill(axis=1)
