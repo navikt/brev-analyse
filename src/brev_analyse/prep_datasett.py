@@ -90,13 +90,13 @@ else:
     print("Datasettene er ulike. Vi kan ikke gjenskape resultatene med nytt uttrekk.")
 # %%
 # 3 sjekk at kolonner for analysen ble like i begge datasett - skal gi True i svar
-if df.columns.equals(subset.columns) == True:
+if df.columns.equals(subset.columns):
     print("Datasett inneholder samme variabler.")
 else:
     print("Datasettene inneholder ikke samme variabler.")
 # %%
 # 4 sjekk at datatyper er de samme - skal svare med True
-if df.dtypes.equals(subset.dtypes) == True:
+if df.dtypes.equals(subset.dtypes):
     print("Datatypene er de samme i begge datasettene.")
 else:
     print("Datatypene er ulike i datasettene.")
