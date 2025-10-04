@@ -141,7 +141,7 @@ print(res.summary())
 # Før vi bytter avhengig variabel så må vi laste inn datasett på nytt
 # For å bli kvitt manglende svar
 
-reg_df = pd.read_spss(datasett_sav_sti)
+reg_df = df.copy()
 # %%
 # Kombinere variablene om å forstå vedtak
 # kombinerer spørsmål om begrunnelse for alle brevtyper
