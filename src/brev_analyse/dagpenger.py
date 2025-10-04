@@ -38,8 +38,8 @@ Steg
 """
 # %%
 # last inn fullstendig datasett
-datasett_sti = "../../data/dagpenger_202506.xlsx"
-df = pd.read_excel(datasett_sti)
+datasett_sti = "../../data/dagpenger_202506.pkl"
+df = pd.read_pickle(datasett_sti)
 # %%
 """
 Del 3: Analyse før sommer 2025
