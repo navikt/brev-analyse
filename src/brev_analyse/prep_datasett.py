@@ -76,20 +76,26 @@ df.rename(columns=questions_short, inplace=True)
 """
 Slik kan vi gjenskape det opprinnelige uttrekket fra spss med rådata fra task analytics
 """
-# gjenskap uttrekk fra spss ved å bruke samme respondenter
+# 1 gjenskap uttrekk fra spss ved å bruke samme respondenter
 subset = df[df["id"].isin(df_spss["V1"])]
 # %%
-# bekreft at vi har riktig antall unike svar i begge sett, slik at diff er 0
+# 2 bekreft at vi har riktig antall unike svar i begge sett, slik at diff er 0
 if df_spss["V1"].nunique() - subset["id"].nunique() == 0:
     print("Datasettene er like. Vi kan gjenskape resultatene.")
 else:
     print("Datasettene er ulike. Vi kan ikke gjenskape resultatene med nytt uttrekk.")
 # %%
-# sjekk at kolonner for analysen ble like i begge datasett - skal gi True i svar
-df.columns.equals(subset.columns)
+# 3 sjekk at kolonner for analysen ble like i begge datasett - skal gi True i svar
+if df.columns.equals(subset.columns) == True:
+    print("Datasett inneholder samme variabler.")
+else:
+    print("Datasettene inneholder ikke samme variabler.")
 # %%
-# sjekk at datatyper er de samme - skal svare med True
-df.dtypes.equals(subset.dtypes)
+# 4 sjekk at datatyper er de samme - skal svare med True
+if df.dtypes.equals(subset.dtypes) == True:
+    print("Datatypene er de samme i begge datasettene.")
+else:
+    print("Datatypene er ulike i datasettene.")
 # %%
 """
 Nå er både fullstendig og opprinnelig datasett klare til analyser
