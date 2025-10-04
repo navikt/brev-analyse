@@ -2,11 +2,10 @@
 """
 Brev om dagpenger
 
-I første del forberedes datasett til analysen
+Del 1 forbereder datasett til analysen
 
-I andre del gjennomføres analysene om dagpenger for begge tidsperioder
-* Hele tidsperioden
-* Perioden før sommer 2025
+Del 2 gjennomføres analysene om dagpenger for begge tidsperioder
+Del 3 gjennomfører analyse for perioden før sommer 2025
 """
 
 import pandas as pd
@@ -18,8 +17,7 @@ from get_answers import get_survey_questions
 
 # %%
 """
-Første del
-Forbered datasett til analyser om dagpenger
+Del 1: Forbered datasett til analyser om dagpenger
 
 Lag to datasett. Ett for hele tidsperioden, og ett for perioden før sommerferie
 
@@ -114,11 +112,11 @@ else:
 
 # %%
 """
-Analyse hele tidsperioden
+Del 2: Analyse for hele tidsperioden
 """
 # %%
 """
-Analyse før sommer 2025
+Del 3: Analyse før sommer 2025
 """
 # Logistisk regresjon
 # Årsaker til at innbyggere tar kontakt om brev
