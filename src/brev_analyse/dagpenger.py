@@ -1,11 +1,6 @@
 # %%
 """
-Brev om dagpenger
-
-Del 1 forbereder datasett til analysen
-
-Del 2 gjennomføres analysene om dagpenger for begge tidsperioder
-Del 3 gjennomfører analyse for perioden før sommer 2025
+Analyse av brev om dagpenger før sommer 2025
 """
 
 import pandas as pd
@@ -14,34 +9,9 @@ from scipy.stats import chi2
 from statsmodels.miscmodels.ordinal_model import OrderedModel
 
 # %%
-"""
-Del 1: Forbered datasett til analyser om dagpenger
-
-Lag to datasett. Ett for hele tidsperioden, og ett for perioden før sommerferie
-
-Datasettene skal ha samme datatyper og variabler til slutt slik at analysen kan gjentas for hver tidsperiode
-
-Steg
-* lagrer fullstendige spørsmålsformuleringer som dictionary
-* fjern første rad med fullstendige spørsmålsformuleringer
-* erklære de kategoriske variablene i datasettene
-* bruk kortere variabelnavn i stedet for stavelsen av alle spørsmål
-* lag subset-datasett basert på identiske respondenter fra rådata
-* gjenskap uttrekk fra spss med rådata fra task analytics
-    > bruker respondent ID
-    > verifiserer at unike respondent IDer er like i begge datasett
-    > verifiserer at samme variabler er i datasettene for begge tidsperioder
-    > verifiserer at samme datatypene er i datasettene for begge tidsperioder
-
-"""
-# %%
 # last inn fullstendig datasett
 datasett_sti = "../../data/dagpenger_202506.pkl"
 df = pd.read_pickle(datasett_sti)
-# %%
-"""
-Del 3: Analyse før sommer 2025
-"""
 # %%
 # Lag kopi av dataframe når du endrer avhengig variabel
 reg_df = df.copy()
