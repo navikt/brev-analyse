@@ -1,5 +1,6 @@
 # %%
 import pandas as pd
+from statsmodels.formula.api import logit
 
 from get_answers import get_survey_questions
 
@@ -139,3 +140,21 @@ res = model.fit()
 print("Modell nummer 1")
 print(f"Formel: {res.model.formula} \n \n")
 print(res.summary())
+
+# %%
+# Log regresjon
+# Kontaktet de Nav og morsmål
+model = logit("dep ~ C(Alder)", data=subset)
+res = model.fit()
+print("Modell nummer 2")
+print(f"Formel: {res.model.formula} \n \n")
+print(res.summary())
+# %%
+# Log regresjon
+# Kontaktet Nav og brevtype + alder + morsmål
+model = logit("dep ~ C(Brevtype) + C(Alder) + C(Morsmål)", data=subset)
+res = model.fit()
+print("Modell nummer 3")
+print(f"Formel: {res.model.formula} \n \n")
+print(res.summary())
+# %%
