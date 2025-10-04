@@ -165,7 +165,9 @@ reg_df = reg_df.dropna(subset=["dep_forstå"])  # fjern tomme rader
 # I en regresjon med flere ordinale variabler kombinerer vi disse med egen syntaks
 # OrderedModel.from_formula('dependent ~ C(factor1) + C(factor2) + C(factor1):C(factor2)', distr='logit', data=reg_df)
 model = OrderedModel.from_formula(
-    "dep_forstå ~ C(Alder) + C(Språket_brevet) + C(Alder):C(Språket_brevet)", distr="logit", data=reg_df
+    "dep_forstå ~ C(Alder) + C(Språket_brevet) + C(Alder):C(Språket_brevet)",
+    distr="logit",
+    data=reg_df,
 )
 res = model.fit(method="bfgs", disp=False)
 print("Modell nummer 6")
@@ -173,14 +175,18 @@ print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
 model = OrderedModel.from_formula(
-    "dep_forstå ~ C(Alder) + C(Morsmål) + C(Alder):C(Morsmål)", distr="logit", data=reg_df
+    "dep_forstå ~ C(Alder) + C(Morsmål) + C(Alder):C(Morsmål)",
+    distr="logit",
+    data=reg_df,
 )
 res = model.fit(method="bfgs", disp=False)
 print("Modell nummer 7")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
-model = OrderedModel.from_formula("dep_forstå ~ C(Tidsbruk)", distr="logit", data=reg_df)
+model = OrderedModel.from_formula(
+    "dep_forstå ~ C(Tidsbruk)", distr="logit", data=reg_df
+)
 res = model.fit(method="bfgs", disp=False)
 print("Modell nummer 8")
 print(f"Formelen: {res.model.formula} \n \n")
