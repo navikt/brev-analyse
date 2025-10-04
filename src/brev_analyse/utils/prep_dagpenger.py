@@ -4,10 +4,10 @@ import pandas as pd
 from get_answers import get_survey_questions
 
 # %%
-datasett_sav_sti = "../../data/Dagpenger brevmåling per 28042025.sav"
+datasett_sav_sti = "../../../data/Dagpenger brevmåling per 28042025.sav"
 df_spss = pd.read_spss(datasett_sav_sti)
 # %%
-datasett_ta_sti = "../../data/uttrekk brev dagpenger 20250916.xlsx"
+datasett_ta_sti = "../../../data/uttrekk brev dagpenger 20250916.xlsx"
 df = pd.read_excel(datasett_ta_sti)
 # %%
 """
@@ -106,7 +106,7 @@ Nå er datasettene for begge tidsperiodene klare til analyse.
 De lagres i mappen data/
 """
 # %%
-df.to_pickle("../../data/dagpenger_202510.pkl")
+df.to_pickle("../../../data/dagpenger_202510.pkl")
 # %%
-subset.to_pickle("../../data/dagpenger_202506.pkl")
+subset.to_pickle("../../../data/dagpenger_202506.pkl")
 # %%
