@@ -102,12 +102,14 @@ else:
     print("Datatypene er ulike i datasettene.")
 # %%
 """
-Nå er både fullstendig og opprinnelig datasett klare til analyser
+Nå er datasettene for begge tidsperiodene klare til analyse.
 
-Henvis til de heretter som
-* df
-* subset
+De lagres i mappen data/
 """
+# %%
+df.to_excel("../../data/dagpenger_202510.xlsx", index=False)
+# %%
+subset.to_excel("../../data/dagpenger_202506.xlsx", index=False)
 # %%
 """
 Lag construct variabler til analysen som går på tvers av brevtype
