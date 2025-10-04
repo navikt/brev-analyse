@@ -138,9 +138,7 @@ print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 
 # %%
-# Før vi bytter avhengig variabel så må vi laste inn datasett på nytt
-# For å bli kvitt manglende svar
-
+# Endrer avhengig variabel så kopierer df på nytt
 reg_df = df.copy()
 # %%
 # Kombinere variablene om å forstå vedtak
