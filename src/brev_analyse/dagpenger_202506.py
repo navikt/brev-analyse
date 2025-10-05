@@ -256,11 +256,10 @@ likert_skala = [
     "Verken lett eller vanskelig",
     "Lett å forstå",
     "Veldig lett å forstå",
-    "Jeg fant ikke forklaringen"
+    "Jeg fant ikke forklaringen",
 ]
 tabell = (
-    _
-    .groupby(["Brevtype", "spørsmål", "svar"])
+    _.groupby(["Brevtype", "spørsmål", "svar"])
     .size()
     .unstack(fill_value=0)
     .reindex(columns=likert_skala, fill_value=0)
