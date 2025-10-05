@@ -17,6 +17,20 @@ df = pd.read_pickle(datasett_sti)
 # Sammenlign fordelinger
 # df = df[df["Når_fikkdu_brevet"] != "Mer enn et år siden"]
 # %%
+# Lag nye aldersgrupper for å tillate sammenligninger med regresjon
+df = df[df["Alder"] != "Yngre enn 19 år"].copy() # dropp svar
+aldersgrupper = {
+    "Yngre enn 19 år": "Under 40 år",
+    "20 – 24 år": "Under 40 år",
+    "25 – 29 år": "Under 40 år",
+    "30 – 39 år": "Under 40 år",
+    "40 – 49 år": "40 - 49 år",
+    "50 – 59 år": "50 - 59 år",
+    "60 eller eldre": "60 eller eldre"
+}
+df["Aldersgruppe"] = df["Alder"].map(aldersgrupper)
+df["Aldersgruppe"] = df["Aldersgruppe"].astype("category")
+# %%
 # Lag kopi av dataframe når du endrer avhengig variabel
 reg_df = df.copy()
 # %%
@@ -39,23 +53,23 @@ print(res.summary())
 # %%
 # Log regresjon
 # Kontaktet de Nav og morsmål
-model = logit("dep ~ C(Alder)", data=reg_df)
+model = logit("dep ~ C(Aldersgruppe)", data=reg_df)
 res = model.fit()
 print("Modell nummer 2")
 print(f"Formel: {res.model.formula} \n \n")
 print(res.summary())
 # %%
 # Log regresjon
-# Kontaktet Nav og brevtype + alder + morsmål
-model = logit("dep ~ C(Brevtype) + C(Alder) + C(Morsmål)", data=reg_df)
+# Kontaktet Nav og brevtype + Aldersgruppe + morsmål
+model = logit("dep ~ C(Brevtype) + C(Aldersgruppe) + C(Morsmål)", data=reg_df)
 res = model.fit()
 print("Modell nummer 3")
 print(f"Formel: {res.model.formula} \n \n")
 print(res.summary())
 # %%
-# Likelihood test for å se om alder forklarer mer enn nullhypotese - ingen variabel
+# Likelihood test for å se om Aldersgruppe forklarer mer enn nullhypotese - ingen variabel
 # Lag begge modellene og sammenlign fit
-model_with = logit("dep ~ C(Alder)", data=reg_df).fit()
+model_with = logit("dep ~ C(Aldersgruppe)", data=reg_df).fit()
 model_without = logit("dep ~ 1", data=reg_df).fit()
 
 # Extract log-likelihoods
@@ -78,8 +92,8 @@ print(f"P-value: {p_value:.5f}")
 
 # %%
 # Log regresjon
-# Kontaktet Nav og alder og morsmål
-model = logit("dep ~ C(Morsmål) + C(Alder)", data=reg_df)
+# Kontaktet Nav og Aldersgruppe og morsmål
+model = logit("dep ~ C(Morsmål) + C(Aldersgruppe)", data=reg_df)
 res = model.fit()
 print("Modell nummer 4")
 print(f"Formel: {res.model.formula} \n \n")
@@ -105,8 +119,8 @@ reg_df["dep"] = reg_df["dep"].map(
 reg_df = reg_df.dropna(subset=["dep"])
 reg_df["dep"] = reg_df["dep"].astype(int)
 # %%
-# Log regresjon - forstår begrunnelse og morsmål alder og kontaktet Nav
-model = logit("dep ~ C(Morsmål) + C(Alder) + C(Kontaktet_Nav)", data=reg_df)
+# Log regresjon - forstår begrunnelse og morsmål Aldersgruppe og kontaktet Nav
+model = logit("dep ~ C(Morsmål) + C(Aldersgruppe) + C(Kontaktet_Nav)", data=reg_df)
 res = model.fit()
 print("Modell nummer 5")
 print(f"Formelen: {res.model.formula} \n \n")
@@ -142,7 +156,7 @@ reg_df = reg_df.dropna(subset=["dep_forstå"])  # fjern tomme rader
 # I en regresjon med flere ordinale variabler kombinerer vi disse med egen syntaks
 # OrderedModel.from_formula('dependent ~ C(factor1) + C(factor2) + C(factor1):C(factor2)', distr='logit', data=reg_df)
 model = OrderedModel.from_formula(
-    "dep_forstå ~ C(Alder) + C(Språket_brevet) + C(Alder):C(Språket_brevet)",
+    "dep_forstå ~ C(Aldersgruppe) + C(Språket_brevet) + C(Aldersgruppe):C(Språket_brevet)",
     distr="logit",
     data=reg_df,
 )
@@ -152,7 +166,7 @@ print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
 model = OrderedModel.from_formula(
-    "dep_forstå ~ C(Alder) + C(Morsmål) + C(Alder):C(Morsmål)",
+    "dep_forstå ~ C(Aldersgruppe) + C(Morsmål) + C(Aldersgruppe):C(Morsmål)",
     distr="logit",
     data=reg_df,
 )
@@ -197,18 +211,18 @@ print(res.summary())
 
 
 # %%
-# forståelse av begrunnelse og alder
+# forståelse av begrunnelse og Aldersgruppe
 model = OrderedModel.from_formula(
-    "dep_forstå ~ C(brev) + C(Alder)", distr="logit", data=reg_df
+    "dep_forstå ~ C(brev) + C(Aldersgruppe)", distr="logit", data=reg_df
 )
 res = model.fit(method="bfgs", disp=False)
 print("Modell nummer 12")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
-# forståelse av begrunnelse og alder og morsmål
+# forståelse av begrunnelse og Aldersgruppe og morsmål
 model = OrderedModel.from_formula(
-    "dep_forstå ~ C(brev) + C(Alder) + C(Morsmål)", distr="logit", data=reg_df
+    "dep_forstå ~ C(brev) + C(Aldersgruppe) + C(Morsmål)", distr="logit", data=reg_df
 )
 res = model.fit(method="bfgs", disp=False)
 print("Modell nummer 13")
