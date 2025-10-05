@@ -82,6 +82,9 @@ print(f"Formel: {res.model.formula} \n \n")
 print(res.summary())
 
 # %%
+# Endrer avhengig variabel så kopierer df på nytt
+reg_df = df.copy()
+# %%
 # Regresjoner om
 # De som synes det er lett eller veldig lett å forstå vedtak
 reg_df["dep"] = reg_df["Innvilgelse_hvorfor"].copy()
@@ -218,4 +221,51 @@ print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 
 
+# %%
+"""
+Tabeller for rapporten
+"""
+# %%
+_ = df.copy()
+_ = pd.melt(
+    frame=df,
+    id_vars=["id", "Brevtype"],
+    value_vars=[
+        "Innvilgelse_hvorfor",
+        "Innvilgelse_informasjon",
+        "Innvilgelse_gjøre",
+        "Avslag_hvorfor",
+        "Avslag_informasjon",
+        "Mangel_hvorfor",
+        "Mangel_informasjon",
+        "Stans_hvorfor",
+        "Stans_informasjon",
+        "Klagerettigheter",
+        "Finne_informasjon",
+        "Språket_brevet",
+        "Overskrift",
+    ],
+    var_name="spørsmål",
+    value_name="svar",
+)
+_ = _.dropna(subset=["svar"])
+# %%
+likert_skala = [
+    "Veldig vanskelig å forstå",
+    "Vanskelig å forstå",
+    "Verken lett eller vanskelig",
+    "Lett å forstå",
+    "Veldig lett å forstå",
+    "Jeg fant ikke forklaringen",
+]
+tabell = (
+    _.groupby(["Brevtype", "spørsmål", "svar"])
+    .size()
+    .unstack(fill_value=0)
+    .reindex(columns=likert_skala, fill_value=0)
+    .reset_index()
+)
+tabell
+# %%
+tabell.to_excel("../../data/tabell_dagpenger_202510.xlsx", index=False)
 # %%
