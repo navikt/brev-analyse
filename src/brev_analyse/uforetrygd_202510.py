@@ -60,8 +60,8 @@ print(f"Formel: {res.model.formula} \n \n")
 print(res.summary())
 # %%
 # Log regresjon
-# Kontaktet Nav og brevtype + Aldersgruppe + morsmål
-model = logit("dep ~ C(Brevtype) + C(Aldersgruppe) + C(Morsmål)", data=reg_df)
+# Kontaktet Nav Aldersgruppe og morsmål
+model = logit("dep ~ + C(Aldersgruppe) + C(Morsmål)", data=reg_df)
 res = model.fit()
 print("Modell nummer 3")
 print(f"Formel: {res.model.formula} \n \n")
