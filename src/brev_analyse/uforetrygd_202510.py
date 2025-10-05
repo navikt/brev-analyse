@@ -13,6 +13,10 @@ from statsmodels.miscmodels.ordinal_model import OrderedModel
 datasett_sti = "../../data/uføretrygd_202510.pkl"
 df = pd.read_pickle(datasett_sti)
 # %%
+# Kjør analyse med og uten gruppen som fikk brev for over ett år siden
+# Sammenlign fordelinger
+# df = df[df["Når_fikkdu_brevet"] != "Mer enn et år siden"]
+# %%
 # Lag kopi av dataframe når du endrer avhengig variabel
 reg_df = df.copy()
 # %%
@@ -220,7 +224,15 @@ print("Modell nummer 14")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 
-
+# %%
+# Har det noe å si hvor lenge siden de leste brevet?
+model = OrderedModel.from_formula(
+    "dep_forstå ~ C(Når_fikkdu_brevet)", distr="logit", data=reg_df
+)
+res = model.fit(method="bfgs", disp=False)
+print("Modell nummer 15")
+print(f"Formelen: {res.model.formula} \n \n")
+print(res.summary())
 # %%
 """
 Tabeller for rapporten
