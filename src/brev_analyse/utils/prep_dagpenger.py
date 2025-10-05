@@ -74,7 +74,17 @@ questions_short = {
 # %%
 # bytt ut alle kolonner som starter med answers. til de kortere formuleringene
 df.rename(columns=questions_short, inplace=True)
-
+# %%
+# bytt om forenklet skala til fullstendig skala
+likert_map = {
+    "Veldig vanskelig": "Veldig vanskelig å forstå",
+    "Vanskelig": "Vanskelig å forstå",
+    "Verken lett eller vanskelig": "Verken lett eller vanskelig",
+    "Lett": "Lett å forstå",
+    "Veldig lett": "Veldig lett å forstå",
+    "Jeg fant ikke forklaringen": "Jeg fant ikke forklaringen",
+}
+df["Finne_informasjon"] = df["Finne_informasjon"].replace(likert_map)
 # %%
 """
 Slik kan vi gjenskape det opprinnelige uttrekket fra spss med rådata fra task analytics
