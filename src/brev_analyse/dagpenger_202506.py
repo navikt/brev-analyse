@@ -229,11 +229,17 @@ Tabeller for rapporten
 _ = df.copy()
 _ = pd.melt(
     frame=df,
-    id_vars="id",
+    id_vars=["id", "Brevtype"],
     value_vars=[
         "Innvilgelse_hvorfor",
         "Innvilgelse_informasjon",
         "Innvilgelse_gjøre",
+        "Avslag_hvorfor",
+        "Avslag_informasjon",
+        "Mangel_hvorfor",
+        "Mangel_informasjon",
+        "Stans_hvorfor",
+        "Stans_informasjon",
         "Klagerettigheter",
         "Finne_informasjon",
         "Språket_brevet",
@@ -242,6 +248,7 @@ _ = pd.melt(
     var_name="spørsmål",
     value_name="svar",
 )
+_ = _.dropna(subset=["svar"])
 # %%
 likert_skala = [
     "Veldig vanskelig å forstå",
@@ -253,11 +260,13 @@ likert_skala = [
 ]
 tabell = (
     _
-    .groupby(["spørsmål", "svar"])
+    .groupby(["Brevtype", "spørsmål", "svar"])
     .size()
     .unstack(fill_value=0)
     .reindex(columns=likert_skala, fill_value=0)
     .reset_index()
 )
 tabell
+# %%
+tabell.to_excel("../../data/tabell.xlsx", index=False)
 # %%
