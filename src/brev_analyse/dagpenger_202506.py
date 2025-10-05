@@ -267,5 +267,5 @@ tabell = (
 )
 tabell
 # %%
-tabell.to_excel("../../data/tabell.xlsx", index=False)
+tabell.to_excel("../../data/tabell_dagpenger_202506.xlsx", index=False)
 # %%
