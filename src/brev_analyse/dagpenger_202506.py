@@ -222,3 +222,42 @@ print(res.summary())
 
 
 # %%
+"""
+Tabeller for rapporten
+"""
+# %%
+_ = df.copy()
+_ = pd.melt(
+    frame=df,
+    id_vars="id",
+    value_vars=[
+        "Innvilgelse_hvorfor",
+        "Innvilgelse_informasjon",
+        "Innvilgelse_gjøre",
+        "Klagerettigheter",
+        "Finne_informasjon",
+        "Språket_brevet",
+        "Overskrift",
+    ],
+    var_name="spørsmål",
+    value_name="svar",
+)
+# %%
+likert_skala = [
+    "Veldig vanskelig å forstå",
+    "Vanskelig å forstå",
+    "Verken lett eller vanskelig",
+    "Lett å forstå",
+    "Veldig lett å forstå",
+    "Jeg fant ikke forklaringen"
+]
+tabell = (
+    _
+    .groupby(["spørsmål", "svar"])
+    .size()
+    .unstack(fill_value=0)
+    .reindex(columns=likert_skala, fill_value=0)
+    .reset_index()
+)
+tabell
+# %%
