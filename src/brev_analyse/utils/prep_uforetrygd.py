@@ -55,7 +55,7 @@ questions_short = {
     "answers.instead4": "Rep_jobb_og_ufør",
     "answers.instead5": "Refp_barnetillegg",
     "answers.segment19": "Morsmål",
-    "answers.instead6": "Alder"
+    "answers.instead6": "Alder",
 }
 # %%
 # bytt ut alle kolonner som starter med answers. til de kortere formuleringene

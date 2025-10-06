@@ -113,7 +113,7 @@ print(res.summary())
 # Endrer avhengig variabel så kopierer df på nytt
 reg_df = df.copy()
 # %%
-# Avhengig variabel 
+# Avhengig variabel
 # Leste brevet flere ganger
 reg_df["dep"] = reg_df["Antall_ganger"]
 reg_df["dep"] = reg_df["dep"].map(
