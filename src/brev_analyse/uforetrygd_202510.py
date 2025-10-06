@@ -13,6 +13,16 @@ from statsmodels.miscmodels.ordinal_model import OrderedModel
 datasett_sti = "../../data/uføretrygd_202510.pkl"
 df = pd.read_pickle(datasett_sti)
 # %%
+# Dropp rader fra
+# De som ikke leste brevet - ingen oppfølgingsspørsmål
+# De som svarte at brevet de fikk var "ingen av disse" - ingen oppfølgingsspørsmål
+df = df[df["Har_lest"] == "Ja"]
+df = df[df["Brevtype"] != "Ingen av disse"]
+# %%
+# Dropp ubrukte kategorier
+df["Har_lest"] = df["Har_lest"].cat.remove_categories(["Nei", "Unknown"])
+df["Brevtype"] = df["Brevtype"].cat.remove_categories(["Ingen av disse"])
+# %%
 # Kjør analyse med og uten gruppen som fikk brev for over ett år siden
 # Sammenlign fordelinger
 # df = df[df["Når_fikkdu_brevet"] != "Mer enn et år siden"]
