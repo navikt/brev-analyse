@@ -207,8 +207,30 @@ print("Modell nummer 6")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
+# Forståelse vs Brevtype og alder
 model = OrderedModel.from_formula(
-    "dep_forstå ~ C(Aldersgruppe) + C(Morsmål) + C(Aldersgruppe):C(Morsmål)",
+    "dep_forstå ~ C(Brevtype) + C(Aldersgruppe)",
+    distr="logit",
+    data=reg_df,
+)
+res = model.fit(method="bfgs", disp=False)
+print("Modell nummer X")
+print(f"Formelen: {res.model.formula} \n \n")
+print(res.summary())
+# %%
+# Forståelse vs Brevtype og morsmål
+model = OrderedModel.from_formula(
+    "dep_forstå ~ C(Brevtype) + C(Morsmål)",
+    distr="logit",
+    data=reg_df,
+)
+res = model.fit(method="bfgs", disp=False)
+print("Modell nummer X")
+print(f"Formelen: {res.model.formula} \n \n")
+print(res.summary())
+# %%
+model = OrderedModel.from_formula(
+    "dep_forstå ~ C(Brevtype) + C(Aldersgruppe) + C(Morsmål) + C(Aldersgruppe):C(Morsmål)",
     distr="logit",
     data=reg_df,
 )
