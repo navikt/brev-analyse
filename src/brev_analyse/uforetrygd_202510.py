@@ -103,6 +103,38 @@ print(res.summary())
 # Endrer avhengig variabel så kopierer df på nytt
 reg_df = df.copy()
 # %%
+# Avhengig variabel 
+# Leste brevet flere ganger
+reg_df["dep"] = reg_df["Antall_ganger"]
+reg_df["dep"] = reg_df["dep"].map(
+    {"Jeg leste brevet en gang": 0, "Jeg leste brevet flere ganger": 1}
+)
+reg_df = reg_df.dropna(subset=["dep"])
+reg_df["dep"] = reg_df["dep"].astype(int)
+# %%
+# Log regresjon
+# Leste brevet flere ganger og tidsbruk
+model = logit("dep ~ C(Tidsbruk)", data=reg_df)
+res = model.fit()
+print("Modell nummer X")
+print(f"Formel: {res.model.formula} \n \n")
+print(res.summary())
+# %%
+# Predikert sannsynlighet for å lese flere ganger
+pred_df = pd.DataFrame({"Tidsbruk": df["Tidsbruk"].unique()})
+pred_df["Predikert sannsynlighet"] = res.predict(pred_df)
+print(pred_df)
+# %%
+# Leste brevet flere ganger og tidsbruk og brevtype
+model = logit("dep ~ C(Brevtype)", data=reg_df)
+res = model.fit()
+print("Modell nummer X")
+print(f"Formel: {res.model.formula} \n \n")
+print(res.summary())
+# %%
+# Endrer avhengig variabel så kopierer df på nytt
+reg_df = df.copy()
+# %%
 # Regresjoner om
 # De som synes det er lett eller veldig lett å forstå vedtak
 reg_df["dep"] = reg_df["Innvilgelse_hvorfor"].copy()
