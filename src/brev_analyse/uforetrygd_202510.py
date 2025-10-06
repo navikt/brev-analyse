@@ -18,7 +18,7 @@ df = pd.read_pickle(datasett_sti)
 # df = df[df["Når_fikkdu_brevet"] != "Mer enn et år siden"]
 # %%
 # Lag nye aldersgrupper for å tillate sammenligninger med regresjon
-df = df[df["Alder"] != "Yngre enn 19 år"].copy() # dropp svar
+df = df[df["Alder"] != "Yngre enn 19 år"].copy()  # dropp svar
 aldersgrupper = {
     "Yngre enn 19 år": "Under 40 år",
     "20 – 24 år": "Under 40 år",
@@ -26,7 +26,7 @@ aldersgrupper = {
     "30 – 39 år": "Under 40 år",
     "40 – 49 år": "40 - 49 år",
     "50 – 59 år": "50 - 59 år",
-    "60 eller eldre": "60 eller eldre"
+    "60 eller eldre": "60 eller eldre",
 }
 df["Aldersgruppe"] = df["Alder"].map(aldersgrupper)
 df["Aldersgruppe"] = df["Aldersgruppe"].astype("category")
