@@ -132,7 +132,7 @@ reg_df["dep"] = reg_df["dep"].astype(int)
 # Leste brevet flere ganger og tidsbruk
 model = logit("dep ~ C(Tidsbruk)", data=reg_df)
 res = model.fit()
-print("Modell nummer X")
+print("Modell nummer 5")
 print(f"Formel: {res.model.formula} \n \n")
 print(res.summary())
 # %%
@@ -144,7 +144,7 @@ print(pred_df)
 # Leste brevet flere ganger og tidsbruk og brevtype
 model = logit("dep ~ C(Brevtype)", data=reg_df)
 res = model.fit()
-print("Modell nummer X")
+print("Modell nummer 6")
 print(f"Formel: {res.model.formula} \n \n")
 print(res.summary())
 # %%
@@ -170,7 +170,7 @@ reg_df["dep"] = reg_df["dep"].astype(int)
 # Log regresjon - forstår begrunnelse og morsmål Aldersgruppe og kontaktet Nav
 model = logit("dep ~ C(Morsmål) + C(Aldersgruppe) + C(Kontaktet_Nav)", data=reg_df)
 res = model.fit()
-print("Modell nummer 5")
+print("Modell nummer 7")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 
@@ -212,7 +212,7 @@ model = OrderedModel.from_formula(
     data=reg_df,
 )
 res = model.fit(method="bfgs", disp=False)
-print("Modell nummer 6")
+print("Modell nummer 8")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
@@ -223,7 +223,7 @@ model = OrderedModel.from_formula(
     data=reg_df,
 )
 res = model.fit(method="bfgs", disp=False)
-print("Modell nummer X")
+print("Modell nummer 9")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
@@ -234,7 +234,7 @@ model = OrderedModel.from_formula(
     data=reg_df,
 )
 res = model.fit(method="bfgs", disp=False)
-print("Modell nummer X")
+print("Modell nummer 10")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
@@ -244,7 +244,7 @@ model = OrderedModel.from_formula(
     data=reg_df,
 )
 res = model.fit(method="bfgs", disp=False)
-print("Modell nummer 7")
+print("Modell nummer 11")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
@@ -252,7 +252,7 @@ model = OrderedModel.from_formula(
     "dep_forstå ~ C(Tidsbruk)", distr="logit", data=reg_df
 )
 res = model.fit(method="bfgs", disp=False)
-print("Modell nummer 8")
+print("Modell nummer 12")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
@@ -260,7 +260,7 @@ model = OrderedModel.from_formula(
     "dep_forstå ~ C(Klagerettigheter)", distr="logit", data=reg_df
 )
 res = model.fit(method="bfgs", disp=False)
-print("Modell nummer 9")
+print("Modell nummer 13")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
@@ -268,7 +268,7 @@ model = OrderedModel.from_formula(
     "dep_forstå ~ C(Antall_ganger)", distr="logit", data=reg_df
 )
 res = model.fit(method="bfgs", disp=False)
-print("Modell nummer 10")
+print("Modell nummer 14")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
@@ -278,7 +278,7 @@ reg_df["brev"] = reg_df["brev"].str.replace("Ingen av disse", "Nan")
 
 model = OrderedModel.from_formula("dep_forstå ~ C(brev)", distr="logit", data=reg_df)
 res = model.fit(method="bfgs", disp=False)
-print("Modell nummer 11")
+print("Modell nummer 15")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 
@@ -289,7 +289,7 @@ model = OrderedModel.from_formula(
     "dep_forstå ~ C(brev) + C(Aldersgruppe)", distr="logit", data=reg_df
 )
 res = model.fit(method="bfgs", disp=False)
-print("Modell nummer 12")
+print("Modell nummer 16")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
@@ -298,7 +298,7 @@ model = OrderedModel.from_formula(
     "dep_forstå ~ C(brev) + C(Aldersgruppe) + C(Morsmål)", distr="logit", data=reg_df
 )
 res = model.fit(method="bfgs", disp=False)
-print("Modell nummer 13")
+print("Modell nummer 17")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
@@ -307,7 +307,7 @@ model = OrderedModel.from_formula(
     "dep_forstå ~ C(brev) + C(Morsmål)", distr="logit", data=reg_df
 )
 res = model.fit(method="bfgs", disp=False)
-print("Modell nummer 14")
+print("Modell nummer 18")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 
@@ -317,7 +317,7 @@ model = OrderedModel.from_formula(
     "dep_forstå ~ C(Når_fikkdu_brevet)", distr="logit", data=reg_df
 )
 res = model.fit(method="bfgs", disp=False)
-print("Modell nummer 15")
+print("Modell nummer 19")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 # %%
