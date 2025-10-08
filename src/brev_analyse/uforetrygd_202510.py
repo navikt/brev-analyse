@@ -9,6 +9,9 @@ from scipy.stats import chi2
 from statsmodels.miscmodels.ordinal_model import OrderedModel
 
 # %%
+"""
+Forbered datasett for analyse
+"""
 # last inn fullstendig datasett
 datasett_sti = "../../data/uføretrygd_202510.pkl"
 df = pd.read_pickle(datasett_sti)
@@ -41,6 +44,9 @@ aldersgrupper = {
 df["Aldersgruppe"] = df["Alder"].map(aldersgrupper)
 df["Aldersgruppe"] = df["Aldersgruppe"].astype("category")
 # %%
+"""
+Logistiske regresjoner
+"""
 # Lag kopi av dataframe når du endrer avhengig variabel
 reg_df = df.copy()
 # %%
@@ -169,6 +175,9 @@ print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
 
 # %%
+"""
+Ordinale regresjoner
+"""
 # Endrer avhengig variabel så kopierer df på nytt
 reg_df = df.copy()
 # %%
