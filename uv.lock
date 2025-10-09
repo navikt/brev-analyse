@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.13"
 
 [[package]]
@@ -26,6 +26,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "openpyxl" },
+    { name = "p2j" },
     { name = "pandas" },
     { name = "pyreadstat" },
     { name = "ruff" },
@@ -44,6 +45,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "openpyxl", specifier = ">=3.1.5" },
+    { name = "p2j", specifier = ">=1.3.2" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pyreadstat", specifier = ">=1.2.8" },
     { name = "ruff", specifier = ">=0.11.4" },
@@ -349,6 +351,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/3d/f9/88d94a75de065ea32619465d2f77b29a0469500e99012523b91cc4141cd1/openpyxl-3.1.5.tar.gz", hash = "sha256:cf0e3cf56142039133628b5acffe8ef0c12bc902d2aadd3e0fe5878dc08d1050", size = 186464, upload-time = "2024-06-28T14:03:44.161Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c0/da/977ded879c29cbd04de313843e76868e6e13408a94ed6b987245dc7c8506/openpyxl-3.1.5-py2.py3-none-any.whl", hash = "sha256:5282c12b107bffeef825f4617dc029afaf41d0ea60823bbb665ef3079dc79de2", size = 250910, upload-time = "2024-06-28T14:03:41.161Z" },
+]
+
+[[package]]
+name = "p2j"
+version = "1.3.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/28/5d/90bd29ff487a45fd1c5162a4e344e279a4da3fafd271f77a69964b3be2c1/p2j-1.3.2.tar.gz", hash = "sha256:6a492350953a87ceaf190b13141242f604b597efd668c2b026241c4a4f4777f5", size = 124682, upload-time = "2019-11-17T15:33:29.195Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ee/5b/98fd10f7ba9fdfc99613c99040a87285dfc68392e5a059c22387ea814e39/p2j-1.3.2-py3-none-any.whl", hash = "sha256:4203eaf03c66a01148d86229670bd64f8e12fdbc9d65ab7cb183074d094d2cf3", size = 19433, upload-time = "2019-11-17T15:33:26.269Z" },
 ]
 
 [[package]]
