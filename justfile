@@ -23,6 +23,9 @@ check:
 format:
     ruff format
 
-# lager rapporter
-gen_reports:
-    p2j -o src/brev_analyse/dagpenger.py
+# lager rapporter ved å konvertere .py til .ipynb filer
+@convert_reports:
+    echo "Converting python files to ipython notebooks"; \
+    for f in $(find src/brev_analyse/ -type f -name "*.py"); do \
+        p2j -o "$f"; \
+    done
