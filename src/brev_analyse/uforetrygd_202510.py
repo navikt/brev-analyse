@@ -26,6 +26,9 @@ df = df[df["Brevtype"] != "Ingen av disse"]
 df["Har_lest"] = df["Har_lest"].cat.remove_categories(["Nei", "Unknown"])
 df["Brevtype"] = df["Brevtype"].cat.remove_categories(["Ingen av disse"])
 # %%
+# TODO 
+# Sammenlign svar fra de som får uføretrygd og jobber mot de som ikke jobber
+# %%
 # Kjør analyse med og uten gruppen som fikk brev for over ett år siden
 # Sammenlign fordelinger
 # df = df[df["Når_fikkdu_brevet"] != "Mer enn et år siden"]
