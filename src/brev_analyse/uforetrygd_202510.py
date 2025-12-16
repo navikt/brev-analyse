@@ -386,7 +386,6 @@ tabell = (
     .reindex(columns=likert_skala, fill_value=0)
     .reset_index()
 )
-tabell
 # %%
 tabell.to_excel("../../data/tabell_uføretrygd_202510.xlsx", index=False)
 # %%
