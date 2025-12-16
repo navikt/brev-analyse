@@ -184,6 +184,10 @@ reg_df["Brevtype"] = reg_df["Brevtype"].cat.remove_categories(
     ["Nav har avslått søknaden min om uføretrygd"]
 )
 # %%
+reg_df["Jobb_og_ufør"] = reg_df["Jobb_og_ufør"].combine_first(
+    reg_df["Rep_jobb_og_ufør"]
+)
+# %%
 # Avhengig variabel
 # Kombinerer jobb og uføretrygd
 reg_df["dep"] = reg_df["Jobb_og_ufør"]
