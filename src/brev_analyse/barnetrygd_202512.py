@@ -183,11 +183,7 @@ reg_df = df.copy()
 # %%
 # Kombinere variablene om å forstå vedtak
 # kombinerer spørsmål om begrunnelse for alle brevtyper
-reg_df["dep_forstå"] = (
-    reg_df[["Innvilgelse_hvorfor"]]
-    .bfill(axis=1)
-    .iloc[:, 0]
-)
+reg_df["dep_forstå"] = reg_df[["Innvilgelse_hvorfor"]].bfill(axis=1).iloc[:, 0]
 
 # %%
 # sett nivåer på ordinal variabel
