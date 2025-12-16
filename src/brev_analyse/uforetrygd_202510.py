@@ -26,7 +26,7 @@ df = df[df["Brevtype"] != "Ingen av disse"]
 df["Har_lest"] = df["Har_lest"].cat.remove_categories(["Nei", "Unknown"])
 df["Brevtype"] = df["Brevtype"].cat.remove_categories(["Ingen av disse"])
 # %%
-# TODO 
+# TODO
 # Sammenlign svar fra de som får uføretrygd og jobber mot de som ikke jobber
 # %%
 # Kjør analyse med og uten gruppen som fikk brev for over ett år siden
@@ -180,14 +180,14 @@ print(res.summary())
 # Endrer avhengig variabel så kopierer df på nytt
 reg_df = df.copy()
 # Dropp svar fra de som ikke fikk spørsmålet - for å bygge matrise
-reg_df["Brevtype"] = reg_df["Brevtype"].cat.remove_categories(["Nav har avslått søknaden min om uføretrygd"])
+reg_df["Brevtype"] = reg_df["Brevtype"].cat.remove_categories(
+    ["Nav har avslått søknaden min om uføretrygd"]
+)
 # %%
 # Avhengig variabel
 # Kombinerer jobb og uføretrygd
 reg_df["dep"] = reg_df["Jobb_og_ufør"]
-reg_df["dep"] = reg_df["dep"].map(
-    {"Nei": 0, "Ja": 1}
-)
+reg_df["dep"] = reg_df["dep"].map({"Nei": 0, "Ja": 1})
 reg_df = reg_df.dropna(subset=["dep"])
 reg_df["dep"] = reg_df["dep"].astype(int)
 
