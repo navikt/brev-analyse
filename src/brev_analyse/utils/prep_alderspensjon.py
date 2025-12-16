@@ -4,13 +4,20 @@ import pandas as pd
 from get_answers import get_survey_questions
 
 # %%
-datasett_sav_sti = (
-    "../../../data/uttrekk brevmålinger 20251204/brev_2024q4_mine_dagpenger.csv"
+datasett_ta_sti = (
+    "../../../data/uttrekk brevmålinger 20251204/brev_2025_alderspensjon.csv"
 )
-df = pd.read_csv(datasett_sav_sti)
+df = pd.read_csv(datasett_ta_sti)
 # %%
 """
-Forbered datasett til analyser om dagpenger
+Forbered datasett til analyser om alderspensjon
+
+Steg
+* lagrer fullstendige spørsmålsformuleringer som dictionary
+* fjern første rad med fullstendige spørsmålsformuleringer
+* erklære de kategoriske variablene i datasettene
+* bruk kortere variabelnavn i stedet for stavelsen av alle spørsmål
+
 """
 # %%
 questions = get_survey_questions(dataframe=df)
@@ -29,17 +36,14 @@ questions_short = {
     "answers.t": "Brevtype",
     "answers.segment21": "Når_fikkdu_brevet",
     "answers.c": "Har_lest",
-    "answers.segment": "Utbetaling_stopp_årsak",
     "answers.segment4": "Overskrift",
     "answers.segment7": "Innvilgelse_hvorfor",
     "answers.segment8": "Innvilgelse_informasjon",
-    "answers.segment9": "Innvilgelse_gjøre",
     "answers.segment10": "Avslag_hvorfor",
     "answers.segment11": "Avslag_informasjon",
-    "answers.segment12": "Mangel_hvorfor",
-    "answers.segment22": "Mangel_informasjon",
-    "answers.segment14": "Stans_hvorfor",
-    "answers.segment15": "Stans_informasjon",
+    "answers.easeofuse": "Beregne_pensjon",
+    "answers.easeofuse1": "Alder_påvirker",
+    "answers.easeofuse2": "Opphold_utlandet",
     "answers.segment16": "Klagerettigheter",
     "answers.segment3": "Finne_informasjon",
     "answers.segment18": "Språket_brevet",
@@ -47,7 +51,8 @@ questions_short = {
     "answers.segment6": "Tidsbruk",
     "answers.segment17": "Kontaktet_Nav",
     "answers.segment19": "Morsmål",
-    "answers.segment20": "Alder",
+    "answers.segment20": "Fødselsår",
+    "answers.easeofuse3": "Utenfor_Norge",
 }
 # %%
 # bytt ut alle kolonner som starter med answers. til de kortere formuleringene
@@ -63,7 +68,6 @@ likert_map = {
     "Jeg fant ikke forklaringen": "Jeg fant ikke forklaringen",
 }
 df["Finne_informasjon"] = df["Finne_informasjon"].replace(likert_map)
-
 # %%
 """
 Nå er datasettene for begge tidsperiodene klare til analyse.
@@ -71,6 +75,5 @@ Nå er datasettene for begge tidsperiodene klare til analyse.
 De lagres i mappen data/
 """
 # %%
-df.to_pickle("../../../data/dagpenger_202512.pkl")
-
+df.to_pickle("../../../data/alderspensjon_202512.pkl")
 # %%

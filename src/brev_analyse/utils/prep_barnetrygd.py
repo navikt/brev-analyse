@@ -4,13 +4,18 @@ import pandas as pd
 from get_answers import get_survey_questions
 
 # %%
-datasett_sav_sti = (
-    "../../../data/uttrekk brevmålinger 20251204/brev_2024q4_mine_dagpenger.csv"
-)
-df = pd.read_csv(datasett_sav_sti)
+datasett_sti = "../../../data/uttrekk brevmålinger 20251204/brev_2025_barnetrygd.csv"
+df = pd.read_csv(datasett_sti)
 # %%
 """
-Forbered datasett til analyser om dagpenger
+Forbered datasett til analyser om barnetrygd
+
+Steg
+* lagrer fullstendige spørsmålsformuleringer som dictionary
+* fjern første rad med fullstendige spørsmålsformuleringer
+* erklære de kategoriske variablene i datasettene
+* bruk kortere variabelnavn i stedet for stavelsen av alle spørsmål
+
 """
 # %%
 questions = get_survey_questions(dataframe=df)
@@ -29,17 +34,13 @@ questions_short = {
     "answers.t": "Brevtype",
     "answers.segment21": "Når_fikkdu_brevet",
     "answers.c": "Har_lest",
-    "answers.segment": "Utbetaling_stopp_årsak",
+    "answers.segment": "Betale_tilbake",
+    "answers.instead": "Forelder_EØS",
+    "answers.instead1": "Utvidet_barnetrygd",
+    "answers.instead2": "Delt_bosted",
     "answers.segment4": "Overskrift",
     "answers.segment7": "Innvilgelse_hvorfor",
     "answers.segment8": "Innvilgelse_informasjon",
-    "answers.segment9": "Innvilgelse_gjøre",
-    "answers.segment10": "Avslag_hvorfor",
-    "answers.segment11": "Avslag_informasjon",
-    "answers.segment12": "Mangel_hvorfor",
-    "answers.segment22": "Mangel_informasjon",
-    "answers.segment14": "Stans_hvorfor",
-    "answers.segment15": "Stans_informasjon",
     "answers.segment16": "Klagerettigheter",
     "answers.segment3": "Finne_informasjon",
     "answers.segment18": "Språket_brevet",
@@ -63,7 +64,6 @@ likert_map = {
     "Jeg fant ikke forklaringen": "Jeg fant ikke forklaringen",
 }
 df["Finne_informasjon"] = df["Finne_informasjon"].replace(likert_map)
-
 # %%
 """
 Nå er datasettene for begge tidsperiodene klare til analyse.
@@ -71,6 +71,5 @@ Nå er datasettene for begge tidsperiodene klare til analyse.
 De lagres i mappen data/
 """
 # %%
-df.to_pickle("../../../data/dagpenger_202512.pkl")
-
+df.to_pickle("../../../data/barnetrygd_202512.pkl")
 # %%
