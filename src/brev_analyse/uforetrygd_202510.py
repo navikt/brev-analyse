@@ -185,9 +185,7 @@ reg_df["Brevtype"] = reg_df["Brevtype"].cat.remove_categories(
 )
 # %%
 # kombiner svar fra mottagere og representanter
-reg_df["Jobb_og_ufør"] = reg_df["Jobb_og_ufør"].combine_first(
-    reg_df["Rep_jobb_og_ufør"]
-)
+reg_df["Jobb_og_ufør"] = reg_df["Jobb_og_ufør"].fillna(reg_df["Rep_jobb_og_ufør"])
 # %%
 # Avhengig variabel
 # Kombinerer jobb og uføretrygd
