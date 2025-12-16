@@ -26,6 +26,20 @@ df = df[df["Brevtype"] != "Ingen av disse"]
 df["Har_lest"] = df["Har_lest"].cat.remove_categories(["Nei", "Unknown"])
 df["Brevtype"] = df["Brevtype"].cat.remove_categories(["Ingen av disse"])
 # %%
+"""
+Sammenligne svar fra enkelte grupper som svarte på undersøkelsen
+"""
+# %%
+# Sammenlign svar fra de som får uføretrygd og jobber mot de som ikke jobber
+# df["Brevtype"] = df["Brevtype"].cat.remove_categories(
+#     ["Nav har avslått søknaden min om uføretrygd"]
+# )
+# kombiner svar fra mottagere og representanter
+# df["Jobb_og_ufør"] = df["Jobb_og_ufør"].fillna(df["Rep_jobb_og_ufør"])
+# velg gruppe for sammenligning
+# df = df[df["Jobb_og_ufør"] == "Ja"]
+# df = df[df["Jobb_og_ufør"] == "Nei"]
+# %%
 # Kjør analyse med og uten gruppen som fikk brev for over ett år siden
 # Sammenlign fordelinger
 # df = df[df["Når_fikkdu_brevet"] != "Mer enn et år siden"]
@@ -172,6 +186,31 @@ model = logit("dep ~ C(Morsmål) + C(Aldersgruppe) + C(Kontaktet_Nav)", data=reg
 res = model.fit()
 print("Modell nummer 7")
 print(f"Formelen: {res.model.formula} \n \n")
+print(res.summary())
+# %%
+# Endrer avhengig variabel så kopierer df på nytt
+reg_df = df.copy()
+# Dropp svar fra de som ikke fikk spørsmålet - for å bygge matrise
+reg_df["Brevtype"] = reg_df["Brevtype"].cat.remove_categories(
+    ["Nav har avslått søknaden min om uføretrygd"]
+)
+# %%
+# kombiner svar fra mottagere og representanter
+reg_df["Jobb_og_ufør"] = reg_df["Jobb_og_ufør"].fillna(reg_df["Rep_jobb_og_ufør"])
+# %%
+# Avhengig variabel
+# Kombinerer jobb og uføretrygd
+reg_df["dep"] = reg_df["Jobb_og_ufør"]
+reg_df["dep"] = reg_df["dep"].map({"Nei": 0, "Ja": 1})
+reg_df = reg_df.dropna(subset=["dep"])
+reg_df["dep"] = reg_df["dep"].astype(int)
+
+# %%
+# Regresjon: Kombinere jobb og uføretrygd
+model = logit("dep ~ C(Brevtype)", data=reg_df)
+res = model.fit()
+print("Modell nummer X")
+print(f"Formel: {res.model.formula} \n \n")
 print(res.summary())
 
 # %%
@@ -361,7 +400,6 @@ tabell = (
     .reindex(columns=likert_skala, fill_value=0)
     .reset_index()
 )
-tabell
 # %%
 tabell.to_excel("../../data/tabell_uføretrygd_202510.xlsx", index=False)
 # %%
