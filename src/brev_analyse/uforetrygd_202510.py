@@ -176,6 +176,28 @@ res = model.fit()
 print("Modell nummer 7")
 print(f"Formelen: {res.model.formula} \n \n")
 print(res.summary())
+# %%
+# Endrer avhengig variabel så kopierer df på nytt
+reg_df = df.copy()
+# Dropp svar fra de som ikke fikk spørsmålet - for å bygge matrise
+reg_df["Brevtype"] = reg_df["Brevtype"].cat.remove_categories(["Nav har avslått søknaden min om uføretrygd"])
+# %%
+# Avhengig variabel
+# Kombinerer jobb og uføretrygd
+reg_df["dep"] = reg_df["Jobb_og_ufør"]
+reg_df["dep"] = reg_df["dep"].map(
+    {"Nei": 0, "Ja": 1}
+)
+reg_df = reg_df.dropna(subset=["dep"])
+reg_df["dep"] = reg_df["dep"].astype(int)
+
+# %%
+# Regresjon: Kombinere jobb og uføretrygd
+model = logit("dep ~ C(Brevtype)", data=reg_df)
+res = model.fit()
+print("Modell nummer X")
+print(f"Formel: {res.model.formula} \n \n")
+print(res.summary())
 
 # %%
 """
