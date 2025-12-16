@@ -4,8 +4,8 @@ import pandas as pd
 from get_answers import get_survey_questions
 
 # %%
-datasett_ta_sti = "../../../data/uttrekk brev uføretrygd 20250916.xlsx"
-df = pd.read_excel(datasett_ta_sti)
+datasett_ta_sti = "../../../data/uttrekk brevmålinger 20251204/brev_2025_din_uføretrygd.csv"
+df = pd.read_csv(datasett_ta_sti)
 # %%
 """
 Forbered datasett til analyser om uføretrygd
@@ -78,5 +78,5 @@ Nå er datasettene for begge tidsperiodene klare til analyse.
 De lagres i mappen data/
 """
 # %%
-df.to_pickle("../../../data/uføretrygd_202510.pkl")
+df.to_pickle("../../../data/uføretrygd_202512.pkl")
 # %%
