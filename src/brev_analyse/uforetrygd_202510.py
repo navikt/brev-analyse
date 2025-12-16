@@ -31,11 +31,11 @@ Sammenligne svar fra enkelte grupper som svarte på undersøkelsen
 """
 # %%
 # Sammenlign svar fra de som får uføretrygd og jobber mot de som ikke jobber
-df["Brevtype"] = df["Brevtype"].cat.remove_categories(
-    ["Nav har avslått søknaden min om uføretrygd"]
-)
+# df["Brevtype"] = df["Brevtype"].cat.remove_categories(
+#     ["Nav har avslått søknaden min om uføretrygd"]
+# )
 # kombiner svar fra mottagere og representanter
-df["Jobb_og_ufør"] = df["Jobb_og_ufør"].fillna(df["Rep_jobb_og_ufør"])
+# df["Jobb_og_ufør"] = df["Jobb_og_ufør"].fillna(df["Rep_jobb_og_ufør"])
 # velg gruppe for sammenligning
 # df = df[df["Jobb_og_ufør"] == "Ja"]
 # df = df[df["Jobb_og_ufør"] == "Nei"]
