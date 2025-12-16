@@ -2,6 +2,7 @@
 import pandas as pd
 
 from get_answers import get_survey_questions
+
 # %%
 datasett_sti = "../../../data/uttrekk brevmålinger 20251204/brev_2025_barnetrygd.csv"
 df = pd.read_csv(datasett_sti)
@@ -47,7 +48,7 @@ questions_short = {
     "answers.segment6": "Tidsbruk",
     "answers.segment17": "Kontaktet_Nav",
     "answers.segment19": "Morsmål",
-    "answers.segment20": "Alder"
+    "answers.segment20": "Alder",
 }
 # %%
 # bytt ut alle kolonner som starter med answers. til de kortere formuleringene
