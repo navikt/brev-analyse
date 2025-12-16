@@ -1,6 +1,6 @@
 # %%
 """
-Analyse av brev om dagpenger høsten 2025
+Analyse av brev om dagpenger julen 2025
 """
 
 import pandas as pd
