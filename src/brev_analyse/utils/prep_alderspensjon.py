@@ -8,7 +8,7 @@ datasett_ta_sti = "../../../data/uttrekk brevmålinger 20251204/brev_2025_alder
 df = pd.read_csv(datasett_ta_sti)
 # %%
 """
-Forbered datasett til analyser om uføretrygd
+Forbered datasett til analyser om alderspensjon
 
 Steg
 * lagrer fullstendige spørsmålsformuleringer som dictionary
