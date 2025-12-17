@@ -356,3 +356,7 @@ tabell = (
 # %%
 tabell.to_excel("../../data/tabell_barnetrygd_202512.xlsx", index=False)
 # %%
+_ = df.groupby(["Brevtype", "Antall_ganger","Tidsbruk"]).agg({"id":"count"})
+_.reset_index(inplace=True)
+_.to_excel("../../data/tidsbruk_barnetrygd_202512.xlsx", index=False)
+# %%
