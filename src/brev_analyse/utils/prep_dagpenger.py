@@ -4,9 +4,7 @@ import pandas as pd
 from get_answers import get_survey_questions
 
 # %%
-datasett_sav_sti = (
-    "../../../data/uttrekk brev dagpenger 20260602.csv"
-)
+datasett_sav_sti = "../../../data/uttrekk brev dagpenger 20260602.csv"
 df = pd.read_csv(datasett_sav_sti)
 # %%
 """
