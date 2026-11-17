@@ -265,7 +265,7 @@ tabell = (
     .reindex(columns=likert_skala, fill_value=0)
     .reset_index()
 )
-tabell
+print(tabell)
 # %%
 tabell.to_excel("../../data/tabell_dagpenger_202606.xlsx", index=False)
 # %%
