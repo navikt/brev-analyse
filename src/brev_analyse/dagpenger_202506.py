@@ -4,8 +4,8 @@ Analyse av brev om dagpenger før sommer 2025
 """
 
 import pandas as pd
-from statsmodels.formula.api import logit
 from scipy.stats import chi2
+from statsmodels.formula.api import logit
 from statsmodels.miscmodels.ordinal_model import OrderedModel
 
 # %%
