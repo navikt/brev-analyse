@@ -44,9 +44,7 @@ def return_open_answers(dataframe: pd.DataFrame) -> list:
     openended = [
         x
         for x in answers
-        if x.startswith("answers.comment")
-        or x.startswith("answers.freetext")
-        or x.endswith("_o")
+        if x.startswith(("answers.comment", "answers.freetext")) or x.endswith("_o")
     ]
     return openended
 
@@ -84,11 +82,11 @@ def clean_survey_headers(dataframe: pd.DataFrame):
     Replace columns starting with "answers" with the corresponding question? - DF will contain full question titles
     OR
     Drop the second row, keep only question IDs
-    """
     df = dataframe
     data = [i for i in df.columns if i.startswith("answers")]
     df.rename(columns={}, inplace=True)
     return df
+    """
 
 
 # %%

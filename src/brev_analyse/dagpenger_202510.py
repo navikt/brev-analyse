@@ -4,8 +4,8 @@ Analyse av brev om dagpenger høsten 2025
 """
 
 import pandas as pd
-from statsmodels.formula.api import logit
 from scipy.stats import chi2
+from statsmodels.formula.api import logit
 from statsmodels.miscmodels.ordinal_model import OrderedModel
 
 # %%
@@ -265,7 +265,7 @@ tabell = (
     .reindex(columns=likert_skala, fill_value=0)
     .reset_index()
 )
-tabell
+print(tabell)
 # %%
 tabell.to_excel("../../data/tabell_dagpenger_202510.xlsx", index=False)
 # %%

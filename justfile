@@ -12,7 +12,7 @@ install:
 
 # update dependencies
 update:
-    uv lock --upgrade
+    uv sync --upgrade
 
 
 # check code

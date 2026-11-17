@@ -21,6 +21,6 @@ get_survey = task.download_survey(
     survey_id=dagpenger,
     filename_path="../../data/dagpenger.csv",
 )
-get_survey.status_code
+print(get_survey.status_code)
 
 # %%

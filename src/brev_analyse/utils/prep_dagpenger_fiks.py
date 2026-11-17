@@ -1,6 +1,5 @@
 # %%
 import pandas as pd
-
 from get_answers import get_survey_questions
 
 # %%
