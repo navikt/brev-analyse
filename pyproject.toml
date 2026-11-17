@@ -13,6 +13,7 @@ license = {file = "LICENSE"}
 dependencies = [
     "openpyxl>=3.1.5",
     "pandas>=2.2.3",
+    "plot-likert>=0.5.0",
     "pyreadstat>=1.2.8",
     "ruff>=0.11.4",
     "scikit-learn>=1.6.1",
