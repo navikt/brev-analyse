@@ -42,11 +42,7 @@ def return_open_answers(dataframe: pd.DataFrame) -> list:
     df = dataframe
     answers = [i for i in df.columns if i.startswith("answers")]
     openended = [
-        x
-        for x in answers
-        if x.startswith("answers.comment")
-        or x.startswith("answers.freetext")
-        or x.endswith("_o")
+        x for x in answers if x.startswith(("answers.comment", "answers.freetext")) or x.endswith("_o")
     ]
     return openended
 
