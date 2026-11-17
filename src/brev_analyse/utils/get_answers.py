@@ -80,11 +80,11 @@ def clean_survey_headers(dataframe: pd.DataFrame):
     Replace columns starting with "answers" with the corresponding question? - DF will contain full question titles
     OR
     Drop the second row, keep only question IDs
-    """
     df = dataframe
     data = [i for i in df.columns if i.startswith("answers")]
     df.rename(columns={}, inplace=True)
     return df
+    """
 
 
 # %%
